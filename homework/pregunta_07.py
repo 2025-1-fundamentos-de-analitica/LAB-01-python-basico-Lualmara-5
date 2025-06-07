@@ -7,7 +7,30 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_07():
-    """
+
+    resultado_dict = {}
+
+    with open("files/input/data.csv", "r") as file:
+        for linea in file:
+            partes = linea.strip().split("\t")
+            letra = partes[0]
+            numero = int(partes[1])
+
+            if numero not in resultado_dict:
+                resultado_dict[numero] = [letra]
+            else:
+                resultado_dict[numero].append(letra)
+
+    resultado = sorted(resultado_dict.items())
+    return resultado
+
+resultado = pregunta_07()
+print("[")
+for item in resultado:
+    print(f" {item},")
+print("]")
+
+"""
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla
     contiene un valor posible de la columna 2 y una lista con todas las letras
     asociadas (columna 1) a dicho valor de la columna 2.
@@ -24,4 +47,4 @@ def pregunta_07():
      (8, ['E', 'D', 'E', 'A', 'B']),
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
-    """
+"""
